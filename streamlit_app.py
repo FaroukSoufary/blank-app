@@ -9,9 +9,10 @@ st.write(
 )
 
 # Get the current credentials
-conn = st.connection("snowflake")
+# conn = st.connection("snowflake")
+conn = st.connnection("conn1", type="snowflake")
 df = conn.query("select * from newsletters")
-st.dataframe(df)
+# st.dataframe(df)
 res_text = df.loc[df['CREATION_DATE'].idxmax()]['NEWSLETTER_BODY']
 st.markdown(res_text)
 
