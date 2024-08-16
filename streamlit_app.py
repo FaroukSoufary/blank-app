@@ -11,7 +11,7 @@ st.write(
 )
 
 # Connect to Snowflake and fetch the newsletters data
-conn = st.experimental_connection("snowflake")  # Assuming you have a connection set up in Streamlit's experimental connection manager
+conn = st.connection("snowflake")  # Assuming you have a connection set up in Streamlit's experimental connection manager
 df = conn.query("SELECT * FROM newsletters")  # Fetch the newsletters table
 df['CREATION_DATE'] = pd.to_datetime(df['CREATION_DATE'])  # Ensure dates are in datetime format
 
