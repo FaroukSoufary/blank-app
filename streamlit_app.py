@@ -25,7 +25,7 @@ if search_term:
     filtered_df = df[df['NEWSLETTER_BODY'].str.contains(search_term, case=False)]
 elif selected_date:
     # Find the newsletter with the closest date to the selected date
-    filtered_df = df.iloc[(pd.DataFrame(df['CREATION_DATE']).date() - selected_date.date()).abs().argsort()[:1]]
+    filtered_df = df.iloc[(df['CREATION_DATE'] - selected_date.date()).abs().argsort()[:1]]
 else:
     # Default behavior: show the latest newsletter
     filtered_df = df[df['CREATION_DATE'] == df['CREATION_DATE'].max()]
