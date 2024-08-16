@@ -25,7 +25,7 @@ if search_term:
     filtered_df = df[df['NEWSLETTER_BODY'].str.contains(search_term, case=False)]
 elif selected_date:
     # Find the newsletter with the closest date to the selected date
-    filtered_df = df.iloc[(df['CREATION_DATE'] - selected_date).abs().argsort()[:1]]
+    filtered_df = df.iloc[(df['CREATION_DATE'].date() - selected_date).abs().argsort()[:1]]
 else:
     # Default behavior: show the latest newsletter
     filtered_df = df[df['CREATION_DATE'] == df['CREATION_DATE'].max()]
@@ -39,12 +39,6 @@ else:
 # Display the newsletter content
 st.markdown(f"<div class='newsletter-body'>{res_text}</div>", unsafe_allow_html=True)
 
-# Additional customization options (optional)
-# Upvote system (simplified)
-upvote = st.button("👍 Upvote this newsletter")
-if upvote:
-    st.success("Thank you for your upvote!")
-    # Logic to record upvotes can be added here
 
 # Comments section
 st.text_area("Leave a comment", placeholder="Share your thoughts about this newsletter...")
